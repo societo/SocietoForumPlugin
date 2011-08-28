@@ -1,0 +1,13 @@
+{% extends skin_template_path('normal_gadget.html.twig') %}
+
+{% block caption %}{{ gadget.caption }}{% endblock %}
+{% block content %}
+{% if not creatable %}
+<p class="error">You cannot have a permission for create new forum to this group.</p>
+{% else %}
+<form action="{{ path('_forum_comment_create', {'gadget': gadget, 'forum': forum}) }}" method="post">
+{{ form_widget(form) }}
+<input type="submit">
+</form>
+{% endif %}
+{% endblock %}

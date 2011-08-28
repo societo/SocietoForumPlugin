@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="societo.forum.page_gadget.create_forum_form" class="SocietoPlugin\Societo\ForumPlugin\PageGadget\CreateForumForm">
+            <tag name="societo.page.gadget" />
+        </service>
+
+        <service id="societo.forum.page_gadget.forum_list" class="SocietoPlugin\Societo\ForumPlugin\PageGadget\ForumList">
+            <tag name="societo.page.gadget" />
+        </service>
+
+        <service id="societo.forum.page_gadget.forum" class="SocietoPlugin\Societo\ForumPlugin\PageGadget\Forum">
+            <tag name="societo.page.gadget" />
+        </service>
+
+        <service id="societo.forum.page_gadget.create_forum_comment_form" class="SocietoPlugin\Societo\ForumPlugin\PageGadget\CreateForumCommentForm">
+            <tag name="societo.page.gadget" />
+        </service>
+
+        <service id="societo.forum.page_gadget.forum_comment_list" class="SocietoPlugin\Societo\ForumPlugin\PageGadget\ForumCommentList">
+            <tag name="societo.page.gadget" />
+        </service>
+
+        <service id="societo.forum.update_forum_comment_count" class="SocietoPlugin\Societo\ForumPlugin\UpdateForumCommentCountEventSubscriber">
+            <tag name="doctrine.event_subscriber" />
+        </service>
+    </services>
+</container>

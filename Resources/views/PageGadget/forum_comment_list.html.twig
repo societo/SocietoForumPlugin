@@ -1,0 +1,20 @@
+{% extends skin_template_path('normal_gadget.html.twig') %}
+
+{% block caption %}{{ gadget.caption }}{% endblock %}
+{% block content %}
+{% for comment in comments %}
+<div class="entry">
+<div class="author"><a href="{{ path('profile', {'member': comment.author}) }}"><img src="{{ path('show_resized_member_image', {'member': comment.author, 'width': 50, 'height': 50}) }}" class="icon"></a></div>
+<div class="body">
+<div class="name"><a href="{{ path('profile', {'member': comment.author}) }}">{{ comment.author.username }}</a></div>
+{{ comment.body | nl2br }}
+<div class="post_date">{{ comment.createdAt | date('Y/m/d H:i:s') }}</div>
+</div>
+</div>
+{% endfor %}
+
+<div class="pagerfanta">
+{{ pagerfanta(pagerfanta, 'default', current_route_info(attributes)) }}
+</div>
+
+{% endblock %}

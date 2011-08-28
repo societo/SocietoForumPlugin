@@ -1,0 +1,41 @@
+{% extends skin_template_path('normal_gadget.html.twig') %}
+
+{% block caption %}{{ gadget.caption }}{% endblock %}
+{% block content %}
+<dl>
+{% for forum in forums %}
+{% if group %}
+<dt class="image"><a href="{{ path('profile', {'member': forum.author}) }}"><img src="{{ path('show_resized_member_image', {'member': forum.author, 'width': 50, 'height': 50}) }}" class="icon"></a></dt>
+<dd><ul>
+    <li class="title"><a href="{{ path("group_forum", {"forum": forum, "group": group}) }}">{{ forum.title }}</a></li>
+    <li class="summary">{{ forum.body | truncate(100) }}</li>
+    <li class="creator">Creator: <a href="{{ path('profile', {'member': forum.author}) }}">{{ forum.author }}</a></li>
+    <li class="updatedAt">{{ forum.updatedAt | date('Y/m/d H:i:s') }}</li>
+    <li class="commentCount">{{ forum.commentCount }} comments</li>
+</ul></dd>
+{% else %}
+<dt class="image"><a href="{{ path('profile', {'member': forum.author}) }}"><img src="{{ path('show_resized_member_image', {'member': forum.author, 'width': 50, 'height': 50}) }}" class="icon"></a></dt>
+<dd><ul>
+    <li class="title"><a href="{{ path("forum", {"forum": forum}) }}">{{ forum.title }}</a></li>
+    <li class="summary">{{ forum.body | truncate(100) }}</li>
+    <li class="creator">Creator: <a href="{{ path('profile', {'member': forum.author}) }}">{{ forum.author }}</a></li>
+    <li class="updatedAt">{{ forum.updatedAt | date('Y/m/d H:i:s') }}</li>
+    <li class="commentCount">{{ forum.commentCount }} comments</li>
+</ul></dd>
+{% endif %}
+{% endfor %}
+</dl>
+
+{% if route_to_more_page %}
+{% if group %}
+<p class="more"><a href="{{ path(route_to_more_page, {"group": group}) }}">More</a></p>
+{% else %}
+<p class="more"><a href="{{ path(route_to_more_page) }}">More</a></p>
+{% endif %}
+{% endif %}
+{% if has_pager %}
+<div class="pagerfanta">
+{{ pagerfanta(pagerfanta, 'default', current_route_info(attributes)) }}
+</div>
+{% endif %}
+{% endblock %}
