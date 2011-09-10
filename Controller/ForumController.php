@@ -15,7 +15,11 @@ class ForumController extends Controller
     {
         $request = $this->get('request');
         if ($request->getMethod() !== 'POST') {
-            throw new \Exception();
+            throw $this->createNotFoundException();
+        }
+
+        if ('SocietoForumPlugin:CreateForumForm' !== $gadget->getName()) {
+            throw $this->createNotFoundException();
         }
 
         $user = $this->get('security.context')->getToken()->getUser();
